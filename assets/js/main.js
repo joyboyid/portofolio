@@ -50,6 +50,26 @@ const sr = ScrollReveal({
 //     reset: true
 });
 
+// Contact
+(function() {
+    // https://dashboard.emailjs.com/admin/account
+    emailjs.init({
+      publicKey: "nMn2M38jfqwcbBcFv",
+    });
+})();
+   window.onload = function() {
+          document.getElementById('contact').addEventListener('button', function(event) {
+              event.preventDefault();
+              // these IDs from the previous steps
+              emailjs.sendForm('contact_service', 'contact__form', this)
+                  .then(() => {
+                      console.log('SUCCESS!');
+                  }, (error) => {
+                      console.log('FAILED...', error);
+                  });
+          });
+      }
+
 sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
